@@ -15,14 +15,14 @@ int prompt_and_return_value(char prompt[]) {
         code 1.
         Else return number.
     */
-    int number;
+    float number;
     char break_line;
 
-    if(scanf("%d%c", &number, &break_line) != 2 || break_line != '\n') {
+    if(!scanf("%f", &number)) {
         printf("%s\n", NON_NUMERIC_ERROR);
         exit(1);
     }
-    return number;
+    return round(number);
 }
 
 void divisable_by(int *number, int divisor, int *change) {
@@ -35,7 +35,7 @@ void divisable_by(int *number, int divisor, int *change) {
 int main() {
     int cost, pay, difference, change, count = 0;
     cost = round(prompt_and_return_value("Cost?\n"));
-    pay = prompt_and_return_value("What are you paying?\n");
+    pay = round(prompt_and_return_value("What are you paying?\n"));
     difference = pay - cost;
     if (cost > pay) {
         printf("You haven't got enough money to buy that!\n");
